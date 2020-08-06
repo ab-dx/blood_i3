@@ -1,37 +1,39 @@
-## Welcome to GitHub Pages
+# Blood i3 
+## Preview:
 
-You can use the [editor on GitHub](https://github.com/ParallaxWave/blood_i3/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+![Preview](preview.png)
+![Preview](preview2.png)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## Things to remember:
+* The status bar is *tint2* and it uses the given *tint2rc*.
+* The scripts *multistat*, *toDo*, *screencast_start*, *wallshift*,*clearToDo* and *modToDo* must be stored in /bin/
+* The scripts *music.sh, info.sh, musicstat.sh, time.sh* must be stored in the HOME directory.
+* To play music, your songs must be stored in *~/Music/All*
+* *.wallpaper.jpg* should be in the HOME directory.
 
-### Markdown
+## The bar:
+![Tint2 Bar](tint2_bar.png)
+* The tint2 bar is running the *info.sh, musicstat.sh, time.sh* scripts for status.
+* Scroll for adjusting volume.
+* Left and right click for switching workspaces.
+* Left Click on the music module for playing music.
+* Right click on the music module to stop music.
+* Left Click on the time module to add tasks.
+* Right Click on the time module to delete tasks
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+## Useful Keybindings
+* mod+m: Start Music
+* mod+Shift+m:  Stop Music
+* mod+Shift+w : Swap Wallpaper (Swaps .wallpaper.jpg with .wallpaper2.jpg and vice-versa in $HOME)
+* mod+d: Add Tasks
+* mod+Shift+d: Clear Tasks
+* mod+Control+d: Delete all existing tasks
+* mod+space: Launch rofi
+* mod+Shift+space: Launch drun rofi
 
-```markdown
-Syntax highlighted code block
 
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/ParallaxWave/blood_i3/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+## Programs required:
+* Rofi (for launching music and schedule scripts)
+* tint2
+* sdhand/picom (for rounded corners)
+* sox (for music)
