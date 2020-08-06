@@ -16,7 +16,10 @@
 * The tint2 bar is running the *info.sh, musicstat.sh, time.sh* scripts for status.
 * Scroll for adjusting volume.
 * Left and right click for switching workspaces.
-* Left Click on the music module for playing music and right click for stopping music.
+* Left Click on the music module for playing music.
+* Right click on the music module to stop music.
+* Left Click on the time module to add tasks.
+* Right Click on the time module to delete tasks
 
 ## Useful Keybindings
 * mod+m: Start Music
