@@ -1,4 +1,4 @@
-#Minimal Nord i3 
+#Blood i3 
 ## Preview:
 
 ![Preview](preview.png)
