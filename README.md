@@ -18,7 +18,7 @@
 * Left and right click for switching workspaces.
 * Left Click on the music module for playing music and right click for stopping music.
 
-##Useful Keybindings
+## Useful Keybindings
 * mod+m: Start Music
 * mod+Shift+m:  Stop Music
 * mod+Shift+w : Swap Wallpaper (Swaps .wallpaper.jpg with .wallpaper2.jpg and vice-versa in $HOME)
