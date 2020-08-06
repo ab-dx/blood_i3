@@ -32,4 +32,5 @@
 ## Programs required:
 * Rofi (for launching music and schedule scripts)
 * tint2
+* sdhand/picom (for rounded corners)
 * sox (for music)
