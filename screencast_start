@@ -1,0 +1,1 @@
+ffmpeg -f x11grab -s 1366x768 -i :0.0 ~/Videos/$(rofi -dmenu "Enter a video name")

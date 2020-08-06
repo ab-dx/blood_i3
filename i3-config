@@ -1,0 +1,122 @@
+exec --no-startup-id exec compton 
+exec --no-startup-id exec feh --bg-scale .wallpaper.jpg  
+exec --no-startup-id exec sh ~/startDay.sh
+exec --no-startup-id exec tint2 
+exec --no-startup-id exec sh ~/xob.sh 
+set $mod Mod4
+font pango:Noto Sans Mono 0
+for_window [class=".*"] split toggle
+for_window [class="^.*"] default_floating_border pixel 0
+for_window [class=".*"] border pixel 0
+gaps outer 5 
+gaps inner 15 
+floating_modifier $mod
+bindsym $mod+m exec ./music.sh
+bindsym $mod+Shift+m exec killall play
+bindsym $mod+Shift+b exec vivaldi 
+bindsym $mod+b exec brave-browser 
+bindsym $mod+Ctrl+b border pixel 0 
+bindsym $mod+Ctrl+Shift+b border pixel 1
+bindsym $mod+Shift+w exec wallshift 
+bindsym $mod+Return exec alacritty
+bindsym $mod+Shift+Return exec xfce4-terminal --hide-menubar 
+bindsym $mod+t exec thunar
+bindsym $mod+d exec toDo
+bindsym $mod+Shift+d exec bash /bin/modList
+bindsym $mod+Control+d exec bash /bin/clearToDo
+bindsym $mod+o exec pactl set-sink-volume 1 -5% && pulsemixer --get-volume | awk '{print $1}' > /tmp/xobpipe
+bindsym $mod+p exec pactl set-sink-volume 1 +5% && pulsemixer --get-volume | awk '{print $1}' > /tmp/xobpipe
+bindsym $mod+Shift+q kill
+bindsym $mod+Shift+s exec scrot ~/screenshot-i3.png
+bindsym $mod+v exec screencast_start
+bindsym $mod+Shift+v exec killall ffmpeg
+bindsym $mod+space exec rofi -show run #-width 100% -height 100%
+bindsym $mod+Shift+space exec rofi -show drun #-width 85
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+bindsym $mod+Control+v split v
+bindsym $mod+Control+e split h
+bindsym $mod+f fullscreen toggle
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+bindsym $mod+Shift+f floating toggle
+bindsym $mod+Tab focus mode_toggle
+bindsym $mod+a focus parent
+bindsym $mod+Shift+x exec i3lock-fancy
+#bindsym $mod+d focus child
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exec i3-msg "exit"
+bindsym $mod+Shift+p exec poweroff
+mode "resize" {
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+bindsym $mod+r mode "resize"
+        bindsym $mod+Control+h resize shrink width 10 px or 10 ppt
+        bindsym $mod+Control+j resize grow height 10 px or 10 ppt
+        bindsym $mod+Control+k resize shrink height 10 px or 10 ppt
+        bindsym $mod+Control+l resize grow width 10 px or 10 ppt
+client.focused      #81A1C1 #81A1C1 #81A1C1 #81A1C1 #81A1C1  
+client.focused_inactive   #2E3440 #2E3440 #2E3440 #2E3440 #2E3440 
+client.unfocused     #2E3440 #2E3440 #2E3440 #2E3440 #2E3440 
+
+client.urgent       #2E344000 #2E344000 #2E344000 #2E344000 #2E344000
+client.placeholder    #2E344000 #2E344000 #2E344000 #2E344000 #2E344000
+
+client.background       #2E344000
+
