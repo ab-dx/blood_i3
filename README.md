@@ -1,8 +1,12 @@
 # Blood i3 
 ## Preview:
 
+![Preview](green.png)
 ![Preview](preview.png)
 ![Preview](preview2.png)
+![Preview](blue.png)
+![Preview](yellow.png)
+![Preview](red.png)
 
 ## Things to remember:
 * The status bar is *tint2* and it uses the given *tint2rc*.
