@@ -1,0 +1,133 @@
+/*
+ * arc-light.rasi
+ * rofi theme inspired by plasma breeze
+ * ParallaxWave 
+ */
+
+* {
+    /* Base */
+    default-background: rgba ( 223, 230, 244, 95 % ); // <- change this for transparency
+    default-foreground: rgba ( 92, 97, 108, 100 % );
+    default-border: rgba ( 124, 131, 137, 100 % );
+    alternative-background: rgba ( 211, 218, 227, 59 % );
+    invisible: rgba(0, 0, 0, 0%);
+
+    /* Colors */
+    hard-blue: rgba ( 82, 148, 226, 100 % );
+    light-blue: rgba(24, 53, 69, 10%);
+
+    hard-red: #E06C75;
+    light-red: rgba(77, 31, 37, 100%);
+
+    hard-green: #98C379;
+    light-green: rgba(19, 55, 35, 100%);
+
+    /* Universal */
+    background-color: @invisible;
+    border-color: @default-border;
+    font: "Fira Code 9";
+    text-color: @default-foreground;
+}
+
+#window {
+    background-color: @default-background;
+    border: 0;
+    border-radius: 3;
+    border-color: @default-border;
+    padding: 7;
+}
+
+#mainbox {
+    border:  0;
+    padding: 0;
+}
+
+#message {
+    border: 1;
+    border-radius: 3;
+    padding: 5;
+    background-color: @alternative-background;
+}
+
+#textbox {
+    background-color: @entry-background;
+}
+
+#listview {
+    fixed-height: 0;
+    spacing: 2;
+    scrollbar: false;
+    padding: 2 0 0;
+}
+
+#element {
+    padding: 5;
+    border: 1;
+    border-radius: 3;
+    border-color: @invisible;
+}
+
+#element.normal.normal {
+    background-color: @invisible;
+}
+
+#element.normal.urgent {
+    background-color: @light-red;
+}
+
+#element.normal.active {
+    background-color: @light-green;
+}
+
+#element.selected.normal {
+    background-color: @light-blue;
+    border-color:     @hard-green;
+}
+
+#element.selected.urgent {
+    background-color: @light-red;
+    border-color:     @hard-red;
+}
+
+#element.selected.active {
+    background-color: @light-green;
+    border-color:     @hard-green;
+}
+
+#mode-switcher {
+    spacing: 0;
+}
+
+#button {
+    border: 0 0 3 0;
+    border-color: @invisible;
+    padding: 3;
+}
+
+#button.selected {
+    border-color: @hard-blue;
+}
+
+#inputbar {
+    spacing: 0;
+    padding: 1;
+}
+
+#case-indicator {
+    spacing: 0;
+    padding: 3px;
+    background-color: @alternative-background;
+    border: 1 1 1 0;
+    border-radius: 0 2 2 0;
+}
+
+#entry {
+    background-color: @alternative-background;
+    padding: 3px;
+    border: 1 0 1 1;
+    border-radius: 2 0 0 2;
+}
+
+#prompt {
+    padding: 3 7 3 0;
+}
