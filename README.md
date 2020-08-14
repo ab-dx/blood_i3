@@ -7,6 +7,10 @@
 ![Preview](blue.png)
 ![Preview](yellow.png)
 ![Preview](red.png)
+![Preview](blue1.png)
+![Preview](blue2.png)
+![Preview](blue_main.png)
+![Preview](blue_time.png)
 
 ## Things to remember:
 * The status bar is *tint2* and it uses the given *tint2rc*.
@@ -17,6 +21,8 @@
 
 ## The bar:
 ![Tint2 Bar](tint2_bar.png)
+![Tint2 Bar](frbar1.png)
+![Tint2 Bar](frbar2.png)
 * The tint2 bar is running the *info.sh, musicstat.sh, time.sh* scripts for status.
 * Scroll for adjusting volume.
 * Left and right click for switching workspaces.
