@@ -1,0 +1,28 @@
+# Blue Mist Colorscheme
+colors:
+  # Default colors
+  primary:
+    background: '0x183f4a'
+    foreground: '0xe0ebef'
+
+  # Normal colors
+  normal:
+    black:   '0x183f4a'
+    red:     '0xa6d2de'
+    green:   '0x9dd0e1'
+    yellow:  '0xb8dee7'
+    blue:    '0xbce1e9'
+    magenta: '0xc4dee6'
+    cyan:    '0xc9e1e8'
+    white:   '0xe0ebef'
+
+  # Bright colors
+  bright:
+    black:   '0x183f4a'
+    red:     '0xa6d2de'
+    green:   '0x9dd0e1'
+    yellow:  '0xb8dee7'
+    blue:    '0xbce1e9'
+    magenta: '0xc4dee6'
+    cyan:    '0xc9e1e8'
+    white:   '0xe0ebef'
