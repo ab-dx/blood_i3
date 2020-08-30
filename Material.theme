@@ -1,0 +1,9 @@
+[Scheme]
+Name=Material
+ColorCursor=#D8DEE9
+ColorForeground=#CACED6
+ColorBackground=#323f4f
+TabActivityColor=#88C0D0
+ColorPalette=#323f4f;#c88fae;#a796dd;#8ea6d6;#8cc7d6;#a1d4c7;#d6e1a6;#E5E9F0;#3d4c5f;#c88fae;#a796dd;#8ea6d6;#8cc7d6;#a1d4c7;#d6e1a6;#E5E9F0;
+ColorBold=#D8DEE9
+ColorBoldUseDefault=FALSE
