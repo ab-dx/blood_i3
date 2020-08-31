@@ -13,11 +13,11 @@ configuration {
 
 * {
 	background-color:            rgba( 50, 63, 79, 95% );
-	text-color:                  #DDDDDD;
+	text-color:                  #E5E9F0;
 	selbg:                       #A796DD;
 	actbg:                       #A796DD;
 	urgbg:                       #FCDA98;
-	winbg:			     #DDEDED;
+	winbg:			     #E5E9F0;
 
 	selected-normal-foreground:  @winbg;
 	normal-foreground:           @text-color;
@@ -100,7 +100,7 @@ element normal.active {
 }
 
 element selected.normal {
-	background-color: @selected-normal-background;
+	background-color: @background-color;
 	text-color:       @selected-normal-foreground;
 	border:           0 5px solid 0 0;
 	border-color:	    @active-background;
