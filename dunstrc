@@ -1,0 +1,59 @@
+[global]
+monitor = 0
+follow = mouse
+geometry = "350x100-20+48"
+indicate_hidden = yes
+shrink = yes
+separator_height = 4
+padding = 12
+horizontal_padding = 20
+frame_width = 0
+sort = no
+idle_threshold = 120
+font = Alata 11
+line_height = 4
+markup = full
+format = %s\n%b
+alignment = center
+show_age_threshold = 3000
+word_wrap = yes
+ignore_newline = no
+transparency = 1
+stack_duplicates = false
+hide_duplicate_count = yes
+show_indicators = no
+icon_position = left
+max_icon_size = 25
+icon_path = ~/.icons/candy-icons/
+sticky_history = no
+history_length = 20
+browser = /usr/bin/firefox -new-tab
+always_run_script = true
+title = Dunst
+class = Dunst
+
+[shortcuts]
+close = ctrl+space
+close_all = ctrl+shift+space
+history = ctrl+grave
+context = ctrl+shift+period
+
+[urgency_low]
+timeout = 4
+background = "#3D4C5F"
+foreground = "#E5E9F0"
+frame_color = "#A796DD"
+
+[urgency_normal]
+timeout = 8
+
+background = "#3D4C5F"
+foreground = "#E5E9F0"
+frame_color = "#A796DD"
+icon = /home/crypticwave/music_icon4.png
+[urgency_critical]
+
+timeout = 0
+background = '#3D4C5F'
+foreground = "#E5E9F0"
+frame_color = "#A796DD"
