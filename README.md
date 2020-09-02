@@ -11,6 +11,10 @@
 ![Preview](blue2.png)
 ![Preview](blue_main.png)
 ![Preview](blue_time.png)
+*
+
+![Preview](material_dream_preview.jpg)
+* The above image (new) uses the material_tint2_top and material_tint2_bottom
 
 ## Things to remember:
 * The status bar is *tint2* and it uses the given *tint2rc*.
@@ -40,6 +44,7 @@
 * mod+Control+d: Delete all existing tasks
 * mod+space: Launch rofi
 * mod+Shift+space: Launch drun rofi
+* mod+x: Launch rofi overview menu (new)
 
 
 ## Programs required:
