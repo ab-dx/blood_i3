@@ -52,3 +52,4 @@
 * tint2
 * sdhand/picom (for rounded corners)
 * sox (for music)
+* weather-util (for weather for rofi overview menu (new) )
