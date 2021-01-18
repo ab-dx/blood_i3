@@ -11,14 +11,14 @@
 #exec --no-startup-id exec killall back4.sh
 #exec --no-startup-id exec $HOME/back4.sh 0.03 gif/train.gif &
 #exec --no-startup-id exec wal -i $(gconftool-2 --get /desktop/gnome/background/picture_filename)  
-exec --no-startup-id exec compton 
+exec --no-startup-id exec picom 
 exec --no-startup-id exec mpd 
 exec --no-startup-id exec feh --bg-fill .wallpaper.jpg  
 exec --no-startup-id exec sh ~/startDay.sh
 exec --no-startup-id exec tint2 
 #exec --no-startup-id exec tint2 -c ~/bar
 exec --no-startup-id exec dunst -c ~/.config/dunst/dunstrc
-#exec --no-startup-id exec sh ~/xob.sh 
+exec --no-startup-id exec sh ~/xob.sh 
 set $mod Mod4
 #exec --no-startup-id nm-applet
 #exec --no-startup-id exec variety
@@ -36,16 +36,16 @@ title_align center
 # X core fonts rendering does not support right-to-left and this being a bitmap
 # font, it doesn’t scale on retina/hidpi displays.
 ################################
-for_window [class=".*"] split toggle
+                                  for_window [class=".*"] split toggle
 #for_window [class="^.*"] default_border pixel 3
 #for_window [class="^.*"] default_floating_border pixel 0
-for_window [class=".*"] border pixel 2
+for_window [class=".*"] border pixel 8
 for_window [class=".*"] hide_edge_borders horizontal
 #bindsym $mod+Shift+f floating enable; resize shrink width 1000px; resize grow width 1260px; resize shrink height 10000px; resize grow height 675px;
 #gaps outer 1
 #gaps inner 8
 #gaps outer 12
-                gaps inner 8 
+                gaps inner 18
 ################################
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -161,13 +161,13 @@ bindsym $mod+Shift+x exec i3lock-fancy
 #bindsym $mod+t exec lxterminal -e ./autotheme.sh
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 ""
+set $ws1 ""
 set $ws2 ""
 set $ws3 ""
 set $ws4 ""
-set $ws5 ""
+set $ws5 ""
 set $ws6 ""
-set $ws7 ""
+set $ws7 ""
 set $ws8 ""
 set $ws9 "9"
 set $ws10 "10"
@@ -237,8 +237,8 @@ bindsym $mod+r mode "resize"
 
 #set_from_resource $fg i3wm.color7 #ffffff
 #set_from_resource $bg i3wm.color2 #009688
-set $fg #3b4252
-set $bg #3b4252 
+set $fg #31323C
+set $bg #21222C 
 # class                 border  backgr. text indicator child_border
 client.focused $fg $fg $fg $fg $fg 
 client.focused_inactive $bg $bg $bg $bg $bg 
