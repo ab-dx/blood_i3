@@ -1,0 +1,74 @@
+conky.config = {
+
+background=true,
+update_interval=1,
+double_buffer=true,
+no_buffers=true,
+imlib_cache_size=10,
+
+draw_shades=false,
+draw_outline=false,
+draw_borders=false,
+
+gap_x=8,
+gap_y=-80,
+
+alignment="bottom_right",
+
+minimum_height=400,
+minimum_width=0,
+
+own_window=true,
+own_window_type="override",
+own_window_transparent=false,
+own_window_hints="undecorated,below,sticky,skip_taskbar,skip_pager",
+
+own_window_argb_visual=true,
+own_window_argb_value=0,
+
+use_xft=true,
+xftalpha=1,
+font="Droid Sans:size=10",
+text_buffer_size=256,
+override_utf8_locale=true,
+
+default_color='FFFFFF',
+
+color0='FFFFFF',
+color1='FFFFFF',
+
+
+
+}
+
+
+
+conky.text = [[
+\
+\
+\
+\
+${font Unica One :weight=Bold:size=80}${color0}\
+${time %H:%M} \
+${voffset -80}
+${font Unica One :weight=Bold:size=30}${color0}\
+ ${time %A}
+${voffset -50}
+${font Unica One:weight=Bold:size=30}${color0}\
+ ${time %d %B}\
+${voffset -15}
+${font Iosevka Nerd Font :weight=Bold:size=15}${color0}\
+  ${cpu cpu0}% |   ${fs_free /} free\
+${voffset 10}
+${font Iosevka Nerd Font :weight=Bold:size=15}${color0}\
+  ${exec mpc current | sed 's/.mp3//g' | sed 's/-/ - /g' | sed 's/^.*\//\//' | sed 's/\///g'}
+\
+\
+\
+\
+\
+\
+\
+\
+]]
+
