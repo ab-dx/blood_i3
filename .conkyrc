@@ -11,7 +11,7 @@ draw_outline=false,
 draw_borders=false,
 
 gap_x=8,
-gap_y=-80,
+gap_y=-60,
 
 alignment="bottom_right",
 
@@ -62,6 +62,7 @@ ${font Iosevka Nerd Font :weight=Bold:size=15}${color0}\
 ${voffset 10}
 ${font Iosevka Nerd Font :weight=Bold:size=15}${color0}\
   ${exec mpc current | sed 's/.mp3//g' | sed 's/-/ - /g' | sed 's/^.*\//\//' | sed 's/\///g'}
+ ${mpd_bar}
 \
 \
 \
