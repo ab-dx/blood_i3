@@ -11,13 +11,16 @@
 #exec --no-startup-id exec killall back4.sh
 #exec --no-startup-id exec $HOME/back4.sh 0.03 gif/train.gif &
 #exec --no-startup-id exec wal -i $(gconftool-2 --get /desktop/gnome/background/picture_filename)  
-exec --no-startup-id exec compton 
-exec --no-startup-id exec feh --bg-scale .wallpaper.jpg  
+exec --no-startup-id exec picom 
+exec --no-startup-id exec mpd 
+exec --no-startup-id exec feh --bg-fill .wallpaper.jpg  
 exec --no-startup-id exec sh ~/startDay.sh
 exec --no-startup-id exec tint2 
-exec --no-startup-id exec tint2 -c ~/btint 
+exec --no-startup-id exec albert
+#exec --no-startup-id exec conky -c ~/.conkyrc
+#exec --no-startup-id exec tint2 -c ~/.config/tint2/nord-dot
 exec --no-startup-id exec dunst -c ~/.config/dunst/dunstrc
-exec --no-startup-id exec sh ~/xob.sh 
+#exec --no-startup-id exec sh ~/xob.sh 
 set $mod Mod4
 #exec --no-startup-id nm-applet
 #exec --no-startup-id exec variety
@@ -26,7 +29,7 @@ set $mod Mod4
 #font pango:monospace 8
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:monospace 8
+font pango:monospace 4
 title_align center
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -35,20 +38,24 @@ title_align center
 # X core fonts rendering does not support right-to-left and this being a bitmap
 # font, it doesn’t scale on retina/hidpi displays.
 ################################
-
-for_window [class=".*"] split toggle
-for_window [class="^.*"] default_border pixel 0
-for_window [class="^.*"] default_floating_border pixel 0
-for_window [class=".*"] border pixel 0
+                                  for_window [class=".*"] split toggle
+#for_window [class="^.*"] default_border pixel 3
+#for_window [class="^.*"] default_floating_border pixel 0
+for_window [class=".*"] border pixel 6
+for_window [class=".*"] hide_edge_borders horizontal
+for_window [class="albert"] border pixel 0
 #bindsym $mod+Shift+f floating enable; resize shrink width 1000px; resize grow width 1260px; resize shrink height 10000px; resize grow height 675px;
-gaps outer 5 
-gaps inner 20 
+#gaps outer 1
+#gaps inner 8
+#gaps outer 12
+#                gaps inner 15
 ################################
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 ##Music audia
-bindsym $mod+m exec ./music.sh
-bindsym $mod+Shift+m exec killall play
+bindsym $mod+m exec ./new_mp.sh
+bindsym $mod+Shift+m exec mpc stop && mpc clear 
+bindsym $mod+Control+m exec mpc toggle
 bindsym $mod+Shift+b exec vivaldi 
 bindsym $mod+b exec brave-browser 
 bindsym $mod+Ctrl+b border pixel 0 
@@ -60,7 +67,7 @@ bindsym $mod+Shift+Control+s sticky disable
 bindsym $mod+x exec ~/menu.sh | rofi -dmenu -theme menu
 # start a terminal
 #indsym $mod+Shift+Return exec lxterminal
-bindsym $mod+Shift+Return exec alacritty
+bindsym $mod+ShiftReturn exec alacritty
 bindsym $mod+Return exec xfce4-terminal --hide-menubar 
 #Start Thunar
 bindsym $mod+t exec thunar
@@ -68,6 +75,10 @@ bindsym $mod+t exec thunar
 #bindsym $mod+y exec brave-browser --app=https://youtube.com
 #bindsym $mod+Shift+g exec ./ingoogle.sh
 #bindsym $mod+Shift+y exec ./inyoutube.sh
+bindsym $mod+g gaps inner all plus 2
+bindsym $mod+Shift+g gaps inner all minus 2
+bindsym $mod+Control+g gaps outer all plus 2
+bindsym $mod+Control+Shift+g gaps outer all minus 2
 bindsym $mod+i exec sbar
 bindsym $mod+Shift+i exec killall lemonbar
 bindsym $mod+d exec toDo
@@ -96,6 +107,8 @@ bindsym $mod+Shift+space exec rofi -show drun #-width 85
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 #Variety
 #bindsym $mod+n exec variety -n && sleep 2 && exec ./walc.sh
+bindsym $mod+n exec mpc next
+bindsym $mod+Shift+n exec mpc prev
 #bindsym $mod+Shift+n exec variety -p && sleep 2 && exec ./walc.sh
 # change focus
 bindsym $mod+h focus left
@@ -151,14 +164,14 @@ bindsym $mod+Shift+x exec i3lock-fancy
 #bindsym $mod+t exec lxterminal -e ./autotheme.sh
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
+set $ws1 ""
+set $ws2 ""
+set $ws3 ""
+set $ws4 ""
+set $ws5 ""
+set $ws6 ""
+set $ws7 ""
+set $ws8 ""
 set $ws9 "9"
 set $ws10 "10"
 
@@ -227,11 +240,12 @@ bindsym $mod+r mode "resize"
 
 #set_from_resource $fg i3wm.color7 #ffffff
 #set_from_resource $bg i3wm.color2 #009688
-
+set $fg #40454D
+set $bg #282C34 
 # class                 border  backgr. text indicator child_border
-client.focused #A796DD #A796DD #A796DD #A796DD #A796DD 
-client.focused_inactive #323F4F #323F4F #323F4F #323F4F #323F4F 
-client.unfocused  #323F4F #323F4F #323F4F #323F4F #323F4F
+client.focused $fg $fg $fg $fg $fg 
+client.focused_inactive $bg $bg $bg $bg $bg 
+client.unfocused $bg $bg $bg $bg $bg
 
 client.urgent       #2E344000 #2E344000 #2E344000 #2E344000 #2E344000
 client.placeholder    #2E344000 #2E344000 #2E344000 #2E344000 #2E344000
@@ -242,25 +256,25 @@ client.background       #323F4F #323F4F #323F4F #323F4F #323F4F
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 #bar{
-#		height 18
+#		height 28
 #		strip_workspace_numbers yes
-##		position bottom 
-##		font pango: Fira Code 8.5
+#		position bottom 
+#		font pango: Iosevka Regular 14 
 #		i3bar_command i3bar -b bar-0
 #		separator_symbol "|"
-# #      status_command python /usr/share/powerline/bindings/i3/powerline-i3.py
-##	status_command sh ~/Github/bumblebee-status/bumblebee-status 
-#	status_command exec multistat 
-##		status_command exec mybar
- #    colors{
+## #      status_command python /usr/share/powerline/bindings/i3/powerline-i3.py
+###	status_command sh ~/Github/bumblebee-status/bumblebee-status 
+##	status_command exec multistat 
+#		status_command exec multistat 
+#     colors{
 #			background #282828 
 #			statusline #EDEDED
-##			separator #FFFFFF
+#			separator #FFFFFF
 #			focused_workspace #DDDDDD #DDDDDD #282828
 #		active_workspace #111111 #111111 #282828
 #			inactive_workspace #282828 #282828 #DDDDDD
 #		urgent_workspace #FFFFFF #FFFFFF $bg
 #			
- #  }
-#		
+#   }
+		
 #}
