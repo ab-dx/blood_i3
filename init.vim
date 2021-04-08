@@ -12,14 +12,15 @@ vnoremap <A-\> :norm xx<CR>
 map <A-S-l> :vsp <CR>
 map <A-S-j> :sp <CR>
 map <A-C-j> :res +5 <CR>
-map <A-g> :Goyo <CR>
-map <A-e> :e ~/.config/nvim/init.vim <CR>
 map <A-C-k> :res -5 <CR>
 map <A-C-l> :vertical resize +5 <CR>
 map <A-C-h> :vertical resize -5 <CR>
 map e :e ~/.config/nvim/init.vim <CR>
+map <A-g> :Goyo <CR>
+map <A-e> :e ~/.config/nvim/init.vim <CR>
 let mapleader = "."
 tnoremap <Esc> <C-\><C-n>
+set number
 set hidden
 set nobackup
 set background=dark
@@ -27,16 +28,14 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 set conceallevel=0
+"set cursorline
+set updatetime=300
+set nocompatible
+set encoding=UTF-8
+syntax enable 
 let g:one_allow_italics = 2
 "set nowritebackup
 "set cmdheight=2
-set updatetime=300
-set nocompatible
-"set shortmess+=c
-"set signcolumn=yes
-
-set encoding=UTF-8
-syntax enable 
 "set noshowmode
 " Always show statusline
 "    set statusline=%<%f\ %h%m%r%{kite#statusline()}%=%-14.(%l,%c%V%)\ %P
@@ -56,7 +55,6 @@ map <A-j> <C-w>j
 map <A-k> <C-w>k
 map <A-l> <C-w>l
 "map <S-Space> zc
-set number
 "set rnu
 " Plug 'itchyny/lightline.vim'
 "let g:lightline = {
@@ -67,7 +65,7 @@ call plug#begin()
 "Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 "Plug 'arakashic/chromatica.nvim'
 Plug 'sheerun/vim-polyglot'
-"Plug 'nvim-treesitter/nvim-treesitter'
+  "Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'tpope/vim-vinegar'
 Plug 'mattn/emmet-vim'
 Plug 'sukima/xmledit'
@@ -78,6 +76,8 @@ Plug 'mhinz/vim-startify'
 Plug 'mboughaba/i3config.vim'
 Plug 'metakirby5/codi.vim'
 Plug 'pianocomposer321/project-templates.nvim', { 'do': ':UpdateRemotePlugins' }
+"Plug 'ojroques/nvim-hardline'
+
 "Plug 'Valloric/YouCompleteMe'
 Plug 'rakr/vim-one'
 Plug 'lambdalisue/battery.vim'
@@ -92,13 +92,21 @@ Plug 'junegunn/fzf.vim'
 let g:airline#extensions#tabline#formatter = 'default'
 "let g:airline_theme='fruitpunch'
 Plug 'ryanoasis/vim-devicons'
+Plug 'kyazdani42/nvim-web-devicons' " for file icons
+Plug 'kyazdani42/nvim-tree.lua'
 Plug 'sonph/onehalf' , {'rtp': 'vim/'}
+"Plug 'nekonako/xresources-nvim'
+
 "Plug 'joshdick/onedark.vim'
 Plug 'preservim/nerdtree'
 Plug 'franbach/miramare'
 Plug 'junegunn/goyo.vim'
+"Plug 'romgrk/barbar.nvim'
+
 Plug 'jschmold/sweet-dark.vim'
 Plug 'b4skyx/serenade'
+
+"Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
 
 
 Plug 'prettier/vim-prettier', {
@@ -109,6 +117,14 @@ Plug 'pangloss/vim-javascript'
 "Plug 'ervandew/supertab'
 Plug 'tomasiser/vim-code-dark'
 Plug 'aurieh/discord.nvim', { 'do': ':UpdateRemotePlugins'}
+"Plug 'zefei/vim-wintabs'
+"Plug 'zefei/vim-wintabs-powerline'
+"Plug 'ojroques/nvim-bufbar'
+
+"Plug 'akinsho/nvim-bufferline.lua'
+
+"Plug 'Th3Whit3Wolf/one-nvim'
+
 "Plug 'unblevable/quick-scope' 
 "lug 'artur-shaik/vim-javacomplete2'
 "  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -167,12 +183,15 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 if has('termguicolors')
   set termguicolors
 endif
-colorscheme onedark 
+colorscheme nord
 au Filetype html,xml,xsl source ~/.config/nvim/closetag.vim
 highlight Normal ctermfg=grey ctermbg=NONE
 highlight Visual cterm=reverse ctermbg=NONE
 "source ~/.config/nvim/statusline.vim
 source ~/.config/nvim/airline.vim
+"source ~/.config/nvim/ntree.vim
+"let g:spaceline_seperate_style = 'arrow'
+"let g:spaceline_colorscheme = 'one'
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 let g:netrw_browse_split = 4
@@ -182,7 +201,7 @@ let g:tagbar_winsize = 8
 let g:battery#update_tabline = 1    " For tabline.
 let g:nord_cursor_line_number_background = 1
 let g:nord_italic = 1
-let g:nord_bold = 1
+let g:nord_bold = 0
 let g:python3_host_prog = '/usr/bin/python3'
 let g:javascript_conceal_function             = "ƒ"
 let g:javascript_conceal_null                 = "ø"
