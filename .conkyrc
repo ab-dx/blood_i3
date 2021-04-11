@@ -11,7 +11,7 @@ draw_outline=false,
 draw_borders=false,
 
 gap_x=8,
-gap_y=-60,
+gap_y=-65,
 
 alignment="bottom_right",
 
@@ -32,10 +32,10 @@ font="Droid Sans:size=10",
 text_buffer_size=256,
 override_utf8_locale=true,
 
-default_color='FFFFFF',
+default_color='CACED6',
 
-color0='FFFFFF',
-color1='FFFFFF',
+color0='CACED6',
+color1='CACED6',
 
 
 
@@ -62,7 +62,6 @@ ${font Iosevka Nerd Font :weight=Bold:size=15}${color0}\
 ${voffset 10}
 ${font Iosevka Nerd Font :weight=Bold:size=15}${color0}\
   ${exec mpc current | sed 's/.mp3//g' | sed 's/-/ - /g' | sed 's/^.*\//\//' | sed 's/\///g'}
- ${mpd_bar}
 \
 \
 \
