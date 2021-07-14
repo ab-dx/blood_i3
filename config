@@ -21,7 +21,7 @@ exec --no-startup-id exec setxkbmap -option caps:hyper
 #exec --no-startup-id exec albert
 #exec --no-startup-id exec conky -c ~/.conkyrc
 #exec --no-startup-id exec tint2 -c ~/.config/tint2/nord-dock-hide
-exec --no-startup-id exec tint2 -c ~/.config/tint2/amarena-dock
+exec --no-startup-id exec tint2 -c ~/.config/tint2/amarena-dock-hide
 exec --no-startup-id exec dunst -c ~/.config/dunst/dunstrc
 exec --no-startup-id exec sh ~/xob.sh 
 set $mod Mod4
@@ -90,9 +90,10 @@ bindsym $mod+Shift+i exec killall lemonbar
 bindsym $mod+d exec toDo
 bindsym $mod+Shift+d exec bash /bin/modList
 bindsym $mod+Control+d exec bash /bin/clearToDo
-bindsym $mod+Control+t exec killall tint2 && tint2 -c ~/.config/tint2/tint2rc_secondary
+bindsym $mod+Control+t exec killall tint2 && tint2 && tint2 ~/.config/tint2/amarena-dock-hide
+bindsym $mod+Shift+Control+t exec killall tint2 && tint2 && tint2 ~/.config/tint2/amarena-dock
 #&& tint2 -c ~/.config/tint2/drac-dot
-bindsym $mod+Shift+Control+t exec killall tint2 && tint2 
+#bindsym $mod+Shift+Control+t exec killall tint2 && tint2 
 #&& tint2 -c ~/.config/tint2/drac-dot
 #Volume ctrl
 bindsym $mod+o exec pactl set-sink-volume 1 -5% && pulsemixer --get-volume | awk '{print $1}' > /tmp/xobpipe
