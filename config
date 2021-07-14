@@ -13,14 +13,17 @@
 #exec --no-startup-id exec wal -i $(gconftool-2 --get /desktop/gnome/background/picture_filename)  
 exec --no-startup-id exec picom 
 exec --no-startup-id exec mpd 
+exec --no-startup-id exec ncmpcpp
 exec --no-startup-id exec feh --bg-fill .wallpaper.jpg  
 exec --no-startup-id exec sh ~/startDay.sh
 exec --no-startup-id exec tint2 
-exec --no-startup-id exec albert
+exec --no-startup-id exec setxkbmap -option caps:hyper
+#exec --no-startup-id exec albert
 #exec --no-startup-id exec conky -c ~/.conkyrc
-#exec --no-startup-id exec tint2 -c ~/.config/tint2/nord-dot
+#exec --no-startup-id exec tint2 -c ~/.config/tint2/nord-dock-hide
+exec --no-startup-id exec tint2 -c ~/.config/tint2/amarena-dock
 exec --no-startup-id exec dunst -c ~/.config/dunst/dunstrc
-#exec --no-startup-id exec sh ~/xob.sh 
+exec --no-startup-id exec sh ~/xob.sh 
 set $mod Mod4
 #exec --no-startup-id nm-applet
 #exec --no-startup-id exec variety
@@ -29,7 +32,7 @@ set $mod Mod4
 #font pango:monospace 8
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:monospace 4
+font pango:Fira Mono 9
 title_align center
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -41,15 +44,16 @@ title_align center
                                   for_window [class=".*"] split toggle
 #for_window [class="^.*"] default_border pixel 3
 #for_window [class="^.*"] default_floating_border pixel 0
-for_window [class=".*"] border pixel 6
+for_window [class=".*"] border pixel 0
 for_window [class=".*"] hide_edge_borders horizontal
 for_window [class="albert"] border pixel 0
 #bindsym $mod+Shift+f floating enable; resize shrink width 1000px; resize grow width 1260px; resize shrink height 10000px; resize grow height 675px;
 #gaps outer 1
 #gaps inner 8
 #gaps outer 12
-#                gaps inner 15
-################################
+gaps inner 16
+####gaps outer 5
+###############################
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 ##Music audia
@@ -64,11 +68,13 @@ bindsym $mod+Shift+w exec wallshift
 bindsym $mod+Control+s sticky enable 
 bindsym $mod+Control+Shift+v exec ~/speech.sh
 bindsym $mod+Shift+Control+s sticky disable
-bindsym $mod+x exec ~/menu.sh | rofi -dmenu -theme menu
+bindsym $mod+x exec ~/data.sh | rofi -dmenu -theme rofi_menu
+bindsym $mod+Control+x exec ~/menu.sh | rofi -dmenu -theme rofi_menu
 # start a terminal
 #indsym $mod+Shift+Return exec lxterminal
-bindsym $mod+ShiftReturn exec alacritty
-bindsym $mod+Return exec xfce4-terminal --hide-menubar 
+#bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec kitty --single-instance
+bindsym $mod+Shift+Return exec xfce4-terminal --hide-menubar 
 #Start Thunar
 bindsym $mod+t exec thunar
 #Custom search
@@ -85,13 +91,15 @@ bindsym $mod+d exec toDo
 bindsym $mod+Shift+d exec bash /bin/modList
 bindsym $mod+Control+d exec bash /bin/clearToDo
 bindsym $mod+Control+t exec killall tint2 && tint2 -c ~/.config/tint2/tint2rc_secondary
-bindsym $mod+Shift+Control+t exec killall tint2 && tint2 -c ~/.config/tint2/tint2rc
-
+#&& tint2 -c ~/.config/tint2/drac-dot
+bindsym $mod+Shift+Control+t exec killall tint2 && tint2 
+#&& tint2 -c ~/.config/tint2/drac-dot
 #Volume ctrl
 bindsym $mod+o exec pactl set-sink-volume 1 -5% && pulsemixer --get-volume | awk '{print $1}' > /tmp/xobpipe
 bindsym $mod+p exec pactl set-sink-volume 1 +5% && pulsemixer --get-volume | awk '{print $1}' > /tmp/xobpipe
 # kill focused window
 bindsym $mod+Shift+q kill
+bindsym $mod+q kill
 #screenshot
 bindsym $mod+Shift+s exec scrot ~/screenshot-i3.png
 #start vifm
@@ -205,7 +213,6 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec i3-msg "exit"
-bindsym $mod+Shift+p exec poweroff
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
@@ -240,12 +247,13 @@ bindsym $mod+r mode "resize"
 
 #set_from_resource $fg i3wm.color7 #ffffff
 #set_from_resource $bg i3wm.color2 #009688
-set $fg #40454D
-set $bg #282C34 
+set $fg #3D4C5F
+set $bg #3B4959
+set $text #caced6 
 # class                 border  backgr. text indicator child_border
-client.focused $fg $fg $fg $fg $fg 
-client.focused_inactive $bg $bg $bg $bg $bg 
-client.unfocused $bg $bg $bg $bg $bg
+client.focused $fg $fg $text $fg $fg 
+client.focused_inactive $bg $bg $text $bg $bg 
+client.unfocused $bg $bg $text $bg $bg
 
 client.urgent       #2E344000 #2E344000 #2E344000 #2E344000 #2E344000
 client.placeholder    #2E344000 #2E344000 #2E344000 #2E344000 #2E344000
@@ -259,13 +267,13 @@ client.background       #323F4F #323F4F #323F4F #323F4F #323F4F
 #		height 28
 #		strip_workspace_numbers yes
 #		position bottom 
-#		font pango: Iosevka Regular 14 
+#		font pango: FiraMono Nerd Font Mono 11 
 #		i3bar_command i3bar -b bar-0
 #		separator_symbol "|"
 ## #      status_command python /usr/share/powerline/bindings/i3/powerline-i3.py
 ###	status_command sh ~/Github/bumblebee-status/bumblebee-status 
 ##	status_command exec multistat 
-#		status_command exec multistat 
+#		status_command exec mybar
 #     colors{
 #			background #282828 
 #			statusline #EDEDED
@@ -276,5 +284,5 @@ client.background       #323F4F #323F4F #323F4F #323F4F #323F4F
 #		urgent_workspace #FFFFFF #FFFFFF $bg
 #			
 #   }
-		
+#		
 #}
