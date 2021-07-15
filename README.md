@@ -36,5 +36,4 @@
 * Rofi (for launching music and schedule scripts)
 * tint2
 * sdhand/picom (for rounded corners)
-* sox (for music)
-* weather-util (for weather for rofi overview menu (new) )
+* weather-util (for weather for rofi overview menu)
