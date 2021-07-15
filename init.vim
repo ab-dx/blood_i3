@@ -10,6 +10,14 @@ vnoremap <A-Tab> :norm i  <CR>
 vnoremap <A-/> :norm i//<CR>
 vnoremap <A-\> :norm xx<CR>
 inoremap <silent><expr> <C-Space> compe#complete()
+nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> <C-n> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
+nnoremap <silent> <C-p> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 map <A-r> :source % <CR>
 map <A-i> :PlugInstall <CR>
 map <A-Return> :FloatermToggle <CR>
@@ -144,8 +152,9 @@ Plug 'glepnir/dashboard-nvim'
 Plug 'hrsh7th/nvim-compe'
 "Plug 'marko-cerovac/material.nvim'
 Plug 'Th3Whit3Wolf/one-nvim'
-
+Plug 'mfussenegger/nvim-jdtls'
 Plug 'folke/tokyonight.nvim'
+Plug 'yashguptaz/calvera-dark.nvim'
 
 "Plug 'unblevable/quick-scope' 
 "lug 'artur-shaik/vim-javacomplete2'
@@ -228,13 +237,13 @@ lua <<EOF
 --    offsets = {{filetype = "NvimTree", text = "File Explorer", highlight = "Directory", text_align = "left"}}
 --  }
 --}
-local bg = "#252931"
-local bg2 = "#1e222a"
+local bg = "#1A2026"
+local bg2 = "#242D35"
 local bg3 = "#282c34"
 local fg = "#CACed6"
-local accent = "#61afef"
-local accent2 = "#e06c75" -- Not saved
-local accent3 = "#d19a66" -- Not saved
+local accent = "#FB6396"
+local accent2 = "#F92D72" -- Not saved
+local accent3 = "#C269BC" -- Not saved
 --local bg = "#16181c"
 --local bg2 = "#282c34"
 --local bg3 = "#1e2127"
@@ -244,22 +253,23 @@ local accent3 = "#d19a66" -- Not saved
 --local accent3 = "#EBCB8B" -- Not saved
  require('bufferline').setup {
   options = {
-    numbers = "none",
-    mappings = true,
-    left_mouse_command = function(bufnum)
-      require('bufdelete').bufdelete(bufnum, true)
-    end,
+    offsets = {{filetype = "NvimTree", text = "", padding = 1}},
+    --numbers = "none",
+    --mappings = true,
+    --left_mouse_command = function(bufnum)
+    --  require('bufdelete').bufdelete(bufnum, true)
+    --end,
     -- NOTE: this plugin is designed with this icon in mind,
     -- and so changing this is NOT recommended, this is intended
     -- as an escape hatch for people who cannot bear it for whatever reason
     indicator_icon = '▎',
     buffer_close_icon = '',
     modified_icon = '●',
-    close_icon = '',
+    close_icon = '',
     left_trunc_marker = '',
     right_trunc_marker = '',
-    max_name_length = 18,
-    max_prefix_length = 15, -- prefix used when a buffer is de-duplicated
+    max_name_length = 14,
+    max_prefix_length = 13, -- prefix used when a buffer is de-duplicated
     tab_size = 20,
     view = "multiwindow",
     diagnostics = "nvim_lsp",
@@ -271,7 +281,6 @@ local accent3 = "#d19a66" -- Not saved
 --          text_align = "center"
 --      }
 --    },
-    offsets = {{filetype = "NvimTree", text = "", padding = 1}},
     show_buffer_icons = true, -- disable filetype icons for buffers
     show_buffer_close_icons = true,
     show_close_icon = true,
@@ -279,7 +288,7 @@ local accent3 = "#d19a66" -- Not saved
     persist_buffer_sort = false, -- whether or not custom sorted buffers should persist
     -- can also be a table containing 2 custom separators
     -- [focused and unfocused]. eg: { '|', '|' }
-    separator_style = "thin",
+    separator_style = "slant-cons",
     enforce_regular_tabs = true,
     always_show_bufferline = true,
     sort_by = 'directory' 
@@ -308,7 +317,7 @@ local accent3 = "#d19a66" -- Not saved
         },
         separator_visible = {
             guifg = bg,
-            guibg = bg3
+            guibg = bg
         },
         indicator_selected = {
             guifg = bg2,
@@ -470,39 +479,70 @@ local gls = gl.section
 local condition = require("galaxyline.condition")
 
 gl.short_line_list = {" "}
+-- siduck onedark below
+--local colors = {
+--    white = "#abb2bf",
+--    darker_black = "#1b1f27",
+--    black = "#1e222a", --  nvim bg
+--    black2 = "#252931",
+--    one_bg = "#282c34", -- real bg of onedark
+--    one_bg2 = "#353b45",
+--    one_bg3 = "#30343c",
+--    grey = "#42464e",
+--    grey_fg = "#565c64",
+--    grey_fg2 = "#6f737b",
+--    light_grey = "#6f737b",
+--    red = "#d47d85",
+--    baby_pink = "#DE8C92",
+--    pink = "#ff75a0",
+--    line = "#2a2e36", -- for lines like vertsplit
+--    green = "#A3BE8C",
+--    vibrant_green = "#7eca9c",
+--    nord_blue = "#81A1C1",
+--    blue = "#61afef",
+--    yellow = "#e7c787",
+--    sun = "#EBCB8B",
+--    purple = "#b4bbc8",
+--    dark_purple = "#c882e7",
+--    teal = "#519ABA",
+--    orange = "#fca2aa",
+--    cyan = "#a3b8ef",
+--    statusline_bg = "#22262e",
+--    lightbg = "#2d3139",
+--    lightbg2 = "#262a32"
+--}
 
 local colors = {
-    white = "#abb2bf",
-    darker_black = "#1b1f27",
-    black = "#1e222a", --  nvim bg
-    black2 = "#252931",
-    one_bg = "#282c34", -- real bg of onedark
-    one_bg2 = "#353b45",
-    one_bg3 = "#30343c",
-    grey = "#42464e",
-    grey_fg = "#565c64",
-    grey_fg2 = "#6f737b",
-    light_grey = "#6f737b",
-    red = "#d47d85",
-    baby_pink = "#DE8C92",
-    pink = "#ff75a0",
+    white = "#e5f0f9",
+    darker_black = "#242D35",
+    black = "#1A2026", --  nvim bg
+    black2 = "#3B4451",
+    one_bg = "#1e222a",
+    one_bg2 = "#21282F",
+    one_bg3 = "#1A2128",
+    grey = "#526170",
+    grey_fg = "#e5f0f9",
+    grey_fg2 = "#caced6",
+    light_grey = "#526170",
+    red = "#FB6396",
+    baby_pink = "#F26190",
+    pink = "#F692B2",
     line = "#2a2e36", -- for lines like vertsplit
-    green = "#A3BE8C",
-    vibrant_green = "#7eca9c",
-    nord_blue = "#81A1C1",
-    blue = "#61afef",
-    yellow = "#e7c787",
-    sun = "#EBCB8B",
-    purple = "#b4bbc8",
-    dark_purple = "#c882e7",
-    teal = "#519ABA",
-    orange = "#fca2aa",
-    cyan = "#a3b8ef",
-    statusline_bg = "#22262e",
-    lightbg = "#2d3139",
-    lightbg2 = "#262a32"
+    green = "#94CF95",
+    vibrant_green = "#6CCB6E",
+    nord_blue = "#6EC1D6",
+    blue = "#4CB9D6",
+    yellow = "#EEF692",
+    sun = "#F6B092",
+    purple = "#CD84C8",
+    dark_purple = "#C269BC",
+    teal = "#7FE4D2",
+    orange = "#E47F7F",
+    cyan = "#58D6BF",
+    statusline_bg = "#242D35",
+    lightbg = "#2B3640",
+    lightbg2 = "#374551"
 }
-
 gls.left[1] = {
   FirstElement = {
     provider = function() return '' end,
@@ -792,22 +832,60 @@ require "nvim-web-devicons".setup {
  --
  --r.dashboard_disable_statusline = 1
 r.dashboard_default_executive = "telescope"
+--r.dashboard_custom_header = {
+--"        ▄███████████▄        ",
+--"     ▄███▓▓▓▓▓▓▓▓▓▓▓███▄     ",
+--"    ███▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓███    ",
+--"   ██▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██   ",
+--"  ██▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██  ",
+--" ██▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██ ",
+--"██▓▓▓▓▓▓▓▓▓███████▓▓▓▓▓▓▓▓▓██",
+--"██▓▓▓▓▓▓▓▓██░░░░░██▓▓▓▓▓▓▓▓██",
+--"██▓▓▓▓▓▓▓██░░███░░██▓▓▓▓▓▓▓██",
+--"███████████░░███░░███████████",
+--"██░░░░░░░██░░███░░██░░░░░░░██",
+--"██░░░░░░░░██░░░░░██░░░░░░░░██",
+--"██░░░░░░░░░███████░░░░░░░░░██",
+--" ██░░░░░░░░░░░░░░░░░░░░░░░██ ",
+--"  ██░░░░░░░░░░░░░░░░░░░░░██  ",
+--"   ██░░░░░░░░░░░░░░░░░░░██   ",
+--"    ███░░░░░░░░░░░░░░░███    ",
+--"     ▀███░░░░░░░░░░░███▀     ",
+--"       ▀███████████▀         ",
+--""
+--"",
+--"",
+--"   ▄████▄        ▒▒▒▒▒    ▒▒▒▒▒    ▒▒▒▒▒    ▒▒▒▒▒",
+--"  ███▄█▀        ▒ ▄▒ ▄▒  ▒ ▄▒ ▄▒  ▒ ▄▒ ▄▒  ▒ ▄▒ ▄▒",
+--" ▐████  █  █    ▒▒▒▒▒▒▒  ▒▒▒▒▒▒▒  ▒▒▒▒▒▒▒  ▒▒▒▒▒▒▒",
+--"  █████▄        ▒▒▒▒▒▒▒  ▒▒▒▒▒▒▒  ▒▒▒▒▒▒▒  ▒▒▒▒▒▒▒",
+--"    ████▀       ▒ ▒ ▒ ▒  ▒ ▒ ▒ ▒  ▒ ▒ ▒ ▒  ▒ ▒ ▒ ▒",
+--"",
+--"",
+--"",
+--"",
+--"",
+--""
+--}
+ 
 r.dashboard_custom_header = {
-"",
-"",
-"   ▄████▄        ▒▒▒▒▒    ▒▒▒▒▒    ▒▒▒▒▒    ▒▒▒▒▒",
-"  ███▄█▀        ▒─▄▒─▄▒  ▒─▄▒─▄▒  ▒─▄▒─▄▒  ▒─▄▒─▄▒",
-" ▐████  █  █    ▒▒▒▒▒▒▒  ▒▒▒▒▒▒▒  ▒▒▒▒▒▒▒  ▒▒▒▒▒▒▒",
-"  █████▄        ▒▒▒▒▒▒▒  ▒▒▒▒▒▒▒  ▒▒▒▒▒▒▒  ▒▒▒▒▒▒▒",
-"    ████▀       ▒ ▒ ▒ ▒  ▒ ▒ ▒ ▒  ▒ ▒ ▒ ▒  ▒ ▒ ▒ ▒",
-"",
-"",
-"",
-"",
-"",
-""
+    "                                   ",
+    "                                   ",
+    "                                   ",
+    "   ⣴⣶⣤⡤⠦⣤⣀⣤⠆     ⣈⣭⣿⣶⣿⣦⣼⣆         ",
+    "    ⠉⠻⢿⣿⠿⣿⣿⣶⣦⠤⠄⡠⢾⣿⣿⡿⠋⠉⠉⠻⣿⣿⡛⣦       ",
+    "          ⠈⢿⣿⣟⠦ ⣾⣿⣿⣷    ⠻⠿⢿⣿⣧⣄     ",
+    "           ⣸⣿⣿⢧ ⢻⠻⣿⣿⣷⣄⣀⠄⠢⣀⡀⠈⠙⠿⠄    ",
+    "          ⢠⣿⣿⣿⠈    ⣻⣿⣿⣿⣿⣿⣿⣿⣛⣳⣤⣀⣀   ",
+    "   ⢠⣧⣶⣥⡤⢄ ⣸⣿⣿⠘  ⢀⣴⣿⣿⡿⠛⣿⣿⣧⠈⢿⠿⠟⠛⠻⠿⠄  ",
+    "  ⣰⣿⣿⠛⠻⣿⣿⡦⢹⣿⣷   ⢊⣿⣿⡏  ⢸⣿⣿⡇ ⢀⣠⣄⣾⠄   ",
+    " ⣠⣿⠿⠛ ⢀⣿⣿⣷⠘⢿⣿⣦⡀ ⢸⢿⣿⣿⣄ ⣸⣿⣿⡇⣪⣿⡿⠿⣿⣷⡄  ",
+    " ⠙⠃   ⣼⣿⡟  ⠈⠻⣿⣿⣦⣌⡇⠻⣿⣿⣷⣿⣿⣿ ⣿⣿⡇ ⠛⠻⢷⣄ ",
+    "    ⢻⣿⣿⣄   ⠈⠻⣿⣿⣿⣷⣿⣿⣿⣿⣿⡟ ⠫⢿⣿⡆       ",
+    "       ⠻⣿⣿⣿⣿⣶⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⡟⢀⣀⣤⣾⡿⠃     ",
+    "                                   "
 }
- --
+
 r.dashboard_custom_section = {
     a = {description = {"  Find File                 SPC f f"}, command = "Telescope find_files"},
     b = {description = {"  Recents                   SPC f o"}, command = "Telescope oldfiles"},
@@ -879,8 +957,16 @@ _G.s_tab_complete = function()
     end
 end
 
+--require'lspconfig'.pyright.setup{}
+--require'lspconfig'.bashls.setup{}
+--require'lspconfig'.angularls.setup{}
+--require'lspconfig'.tailwindcss.setup{}
+--require'lspconfig'.tsserver.setup{}
+
+
+
 EOF
-colorscheme base16-onedark
+colorscheme base16-amarena 
 au Filetype html,xml,xsl source ~/.config/nvim/closetag.vim
 "highlight Normal ctermfg=grey guibg=NONE ctermbg=NONE
 "2c323c
@@ -888,12 +974,12 @@ highlight Visual cterm=reverse ctermbg=NONE
 highlight VertSplit cterm=reverse ctermbg=NONE guifg=#1b1f27
 highlight NonText guifg=bg
 "highlight NvimTree guibg=#282c34
-highlight! StatusLineNC gui=underline guibg=#1e222a guifg=#1e222a
+highlight! StatusLineNC gui=underline guibg=NONE guifg=#282c34
 "24282f
-highlight NvimTreeNormal guibg=#1b1f27
+highlight NvimTreeNormal guibg=#161B20
 "highlight NvimTree cterm=reverse ctermbg=black guibg=#282c34
 "highlight VertSplit ctermfg=NONE guifg=NONE
-highlight LineNr ctermfg=grey ctermbg=NONE guibg=NONE guifg=#282c34
+highlight LineNr ctermfg=grey ctermbg=NONE guibg=NONE guifg=#242d35
 source ~/.config/nvim/m_statusline.vim
 "source ~/.config/nvim/airline.vim
 "source ~/.config/nvim/ntree.vim
@@ -938,7 +1024,7 @@ let g:battery#update_tabline = 1    " For tabline.
 let g:nord_cursor_line_number_background = 1
 let g:nord_italic = 1
 let g:nord_bold = 0
-let g:python3_host_prog = '/usr/bin/python3'
+"let g:python3_host_prog = '/usr/bin/python3'
 let g:nvim_tree_indent_markers = 1 "0 by default, this option shows indent markers when folders are open:
 "let g:airline#extensions#whitespace#enabled = 0
 "let g:javascript_conceal_function             = "ƒ"
@@ -991,6 +1077,10 @@ let g:indentLine_setConceal = 1
 
 
 filetype plugin on
+autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 100)
+autocmd BufWritePre *.ts lua vim.lsp.buf.formatting_sync(nil, 100)
+autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 100)
+autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 100)
 set omnifunc=syntaxcomplete#Complete
 au FileType php setl ofu=phpcomplete#CompletePHP
 au FileType ruby,eruby setl ofu=rubycomplete#Complete
