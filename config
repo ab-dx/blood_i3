@@ -11,19 +11,19 @@
 #exec --no-startup-id exec killall back4.sh
 #exec --no-startup-id exec $HOME/back4.sh 0.03 gif/train.gif &
 #exec --no-startup-id exec wal -i $(gconftool-2 --get /desktop/gnome/background/picture_filename)  
-exec --no-startup-id exec picom 
+#exec --no-startup-id exec picom 
 exec --no-startup-id exec mpd 
-exec --no-startup-id exec ncmpcpp
+#exec --no-startup-id exec ncmpcpp
 exec --no-startup-id exec feh --bg-fill .wallpaper.jpg  
 exec --no-startup-id exec sh ~/startDay.sh
 exec --no-startup-id exec tint2 
 exec --no-startup-id exec setxkbmap -option caps:hyper
 #exec --no-startup-id exec albert
 #exec --no-startup-id exec conky -c ~/.conkyrc
-#exec --no-startup-id exec tint2 -c ~/.config/tint2/nord-dock-hide
-exec --no-startup-id exec tint2 -c ~/.config/tint2/amarena-dock-hide
+#exec --no-startup-id exec tint2 -c ~/.config/tint2/mac_dock
+#exec --no-startup-id exec tint2 -c ~/.config/tint2/amarena-dock-hide
 exec --no-startup-id exec dunst -c ~/.config/dunst/dunstrc
-exec --no-startup-id exec sh ~/xob.sh 
+#exec --no-startup-id exec sh ~/xob.sh 
 set $mod Mod4
 #exec --no-startup-id nm-applet
 #exec --no-startup-id exec variety
@@ -32,7 +32,7 @@ set $mod Mod4
 #font pango:monospace 8
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:Fira Mono 9
+font pango:Fira Mono 11
 title_align center
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -48,11 +48,7 @@ for_window [class=".*"] border pixel 0
 for_window [class=".*"] hide_edge_borders horizontal
 for_window [class="albert"] border pixel 0
 #bindsym $mod+Shift+f floating enable; resize shrink width 1000px; resize grow width 1260px; resize shrink height 10000px; resize grow height 675px;
-#gaps outer 1
-#gaps inner 8
-#gaps outer 12
-gaps inner 16
-####gaps outer 5
+#gaps inner 16
 ###############################
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -68,12 +64,12 @@ bindsym $mod+Shift+w exec wallshift
 bindsym $mod+Control+s sticky enable 
 bindsym $mod+Control+Shift+v exec ~/speech.sh
 bindsym $mod+Shift+Control+s sticky disable
-bindsym $mod+x exec ~/data.sh | rofi -dmenu -theme rofi_menu
-bindsym $mod+Control+x exec ~/menu.sh | rofi -dmenu -theme rofi_menu
+bindsym $mod+Control+x exec ~/data.sh | rofi -dmenu -theme rofi_menu
+bindsym $mod+x exec ~/menu.sh | rofi -dmenu # -theme rofi_menu
 # start a terminal
 #indsym $mod+Shift+Return exec lxterminal
 #bindsym $mod+Return exec alacritty
-bindsym $mod+Return exec kitty --single-instance
+bindsym $mod+Return exec kitty 
 bindsym $mod+Shift+Return exec xfce4-terminal --hide-menubar 
 #Start Thunar
 bindsym $mod+t exec thunar
@@ -90,10 +86,11 @@ bindsym $mod+Shift+i exec killall lemonbar
 bindsym $mod+d exec toDo
 bindsym $mod+Shift+d exec bash /bin/modList
 bindsym $mod+Control+d exec bash /bin/clearToDo
-bindsym $mod+Control+t exec killall tint2 && tint2 && tint2 ~/.config/tint2/amarena-dock-hide
-bindsym $mod+Shift+Control+t exec killall tint2 && tint2 && tint2 ~/.config/tint2/amarena-dock
+#bindsym $mod+Control+t exec killall tint2 && tint2 && tint2 ~/.config/tint2/amarena-dock-hide
+#bindsym $mod+Shift+Control+t exec killall tint2 && tint2 && tint2 ~/.config/tint2/amarena-dock
 #&& tint2 -c ~/.config/tint2/drac-dot
-#bindsym $mod+Shift+Control+t exec killall tint2 && tint2 
+bindsym $mod+Shift+Control+t exec killall tint2 && tint2 
+bindsym $mod+Control+t exec killall tint2 && tint2 ~/.config/tint2/tint2rc_secondary
 #&& tint2 -c ~/.config/tint2/drac-dot
 #Volume ctrl
 bindsym $mod+o exec pactl set-sink-volume 1 -5% && pulsemixer --get-volume | awk '{print $1}' > /tmp/xobpipe
@@ -173,14 +170,14 @@ bindsym $mod+Shift+x exec i3lock-fancy
 #bindsym $mod+t exec lxterminal -e ./autotheme.sh
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 ""
+set $ws1 ""
 set $ws2 ""
-set $ws3 ""
-set $ws4 ""
+set $ws8 ""
+set $ws3 ""
 set $ws5 ""
 set $ws6 ""
-set $ws7 ""
-set $ws8 ""
+set $ws7 ""
+set $ws4 ""
 set $ws9 "9"
 set $ws10 "10"
 
@@ -248,8 +245,8 @@ bindsym $mod+r mode "resize"
 
 #set_from_resource $fg i3wm.color7 #ffffff
 #set_from_resource $bg i3wm.color2 #009688
-set $fg #3D4C5F
-set $bg #3B4959
+set $fg #282828
+set $bg #282828
 set $text #caced6 
 # class                 border  backgr. text indicator child_border
 client.focused $fg $fg $text $fg $fg 
@@ -265,10 +262,10 @@ client.background       #323F4F #323F4F #323F4F #323F4F #323F4F
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 #bar{
-#		height 28
+#		height 20
 #		strip_workspace_numbers yes
 #		position bottom 
-#		font pango: FiraMono Nerd Font Mono 11 
+#		font pango: FiraMono Nerd Font Mono 9
 #		i3bar_command i3bar -b bar-0
 #		separator_symbol "|"
 ## #      status_command python /usr/share/powerline/bindings/i3/powerline-i3.py
